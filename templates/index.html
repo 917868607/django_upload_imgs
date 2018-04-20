@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传图片</title>
+</head>
+<body>
+    <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input name="img" type="file" value="选择要上传的图片" >
+        <button type="submit" >点击上传</button>
+        <a href="/">显示图片</a>
+    </form>
+
+    {% if imgs != 1 %}
+        {% for img in imgs %}
+            <img src="media/{{ img.img_src }}" alt="">
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
